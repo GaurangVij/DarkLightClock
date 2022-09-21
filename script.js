@@ -1,49 +1,46 @@
-function displayTime()
-{
-    var dateTime = new Date();
-    var hrs= dateTime.getHours();
-    var mins = dateTime.getMinutes();
-    var seconds = dateTime.getSeconds();
-    const button = document.getElementById('click');
-    const clock = document.getElementById('clock');
-    
-    if(hrs >= 12)
-    {
-        session.innerHTML='PM';
+
+function DisplayTime(){
+    let hoursDisplay = document.getElementById('hours');
+    let minutesDisplay = document.getElementById('minutes');
+    let secondsDisplay = document.getElementById('seconds');
+    let sessionDisplay = document.getElementById('session');
+    let dateTime = new Date();
+    hours = dateTime.getHours();
+    minutes = dateTime.getMinutes();
+    seconds = dateTime.getSeconds();
+
+
+    hoursDisplay.innerHTML = hours+":";
+    minutesDisplay.innerHTML = minutes+':';
+    secondsDisplay.innerHTML = seconds+":";
+    if(hours>12){
+        sessionDisplay.innerHTML = "PM";
+    }else{
+        sessionDisplay.innerHTML = "AM";
     }
-    else
-    {
-        session.innerHTML='AM';
-    }
-    if(hrs >12)
-    {
-        hrs=hrs-12;
-    }
-    
-   
-    document.getElementById('hours').innerHTML=hrs+":";
-    document.getElementById('minutes').innerHTML=mins+":";
-    document.getElementById('seconds').innerHTML=seconds;
     setTimeout(()=>{
-        displayTime();
+        DisplayTime();
     },1000);
-   button.addEventListener('click',(e) =>
-    {
-        if ( button.innerHTML == 'Dark Mode')
-        {
-            document.body.style.backgroundColor = 'black';
-            button.innerHTML = 'Light Mode';
+    
+    
 
-            return;
-        }
-        else
-        {
-            document.body.style.backgroundColor = 'white';
-            button.innerHTML = 'Dark Mode';
-           // clock.classList.toggle("light");
-            return;
-        }
-    });
 
-}
-displayTime();
+let  button = document.getElementById("click");
+button.addEventListener('click', (e)=>{
+    if(button.innerHTML =="Dark Mode"){
+        document.getElementById('container').style.backgroundColor ="black";
+        button.innerHTML = "Light Mode";
+        button.style.backgroundColor = "white";
+        button.style.color = 'black';
+        
+        return;
+    }else{
+        document.getElementById('container').style.backgroundColor ="white";
+        button.innerText = "Dark Mode";
+         button.style.backgroundColor = "black";
+        button.style.color = 'white';
+        return;
+    }
+});
+
+}DisplayTime();
